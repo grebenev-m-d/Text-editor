@@ -1,0 +1,155 @@
+﻿<Window x:Class="Text_editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Text_editor"
+        
+        mc:Ignorable="d" 
+        Title="Текстовый редактор" Height="476" Width="972" Background="#B0B4B9" 
+        WindowStyle="None"
+        Icon ="Resource\iconProgramShortcut.png"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
+
+        <Grid Background="#CBE6D6"  MinWidth="800" MouseDown="Grid_MouseDown">
+
+
+
+            <Button x:Name="btnSaveFile" HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" Height="30" Width="30" Click="btnSaveFile_Click">
+                <Image Source="Resource\iconSave.png" Height="23" Width="23"/>
+            </Button>
+            <Button x:Name="btnOpenFile"  Background="Transparent" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Bottom" Height="30" Width="30" Click="btnOpenFile_Click">
+                <Image Source="Resource\iconOpen.png" Height="23" Width="23"/>
+            </Button>
+
+            <Button x:Name="btnHide"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,0,60,0" VerticalAlignment="Center" Height="30" Width="30" Click="btnHide_Click">
+                <Image Source="Resource\iconMinimizeWindow.png"/>
+            </Button>
+            <Button x:Name="btnCollapseExpand"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,0,30,0" VerticalAlignment="Center" Height="30" Width="30" Click="btnCollapseExpand_Click">
+                <Image Source="Resource\iconOpenWindow.png" />
+            </Button>
+            <Button x:Name="btnClose" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,0,0,0" Width="30" Click="btnClose_Click">
+                <Image Source="Resource\iconCloseWindow.png" />
+            </Button>
+
+        </Grid>
+        <Grid Margin="1,22,-1,3" Grid.RowSpan="2">
+            <RichTextBox x:Name="rtbEditField" Background="#DFE3E6" BorderBrush="#2C373A"  Margin="60,111,60,31" SelectionChanged="rtbEditField_SelectionChanged" FontSize="22">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text=""/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <ToolBar Background="#6A7778"  Margin="10,19,10,0" Height="70" VerticalAlignment="Top" Style="{DynamicResource ToolbarStyle}" >
+                <Button x:Name="btnBold" Background="#99A2A4" BorderBrush="#2E383C" Content="B" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,5,0" Height="40" Width="40" Click="btnBold_Click"/>
+                <Button x:Name="btnItalic" Background="#99A2A4" BorderBrush="#2E383C" Content="I" HorizontalAlignment="Left" Margin="5,10,5,0" Height="40" Width="40" Click="btnItalic_Click" VerticalAlignment="Top"/>
+                <Button x:Name="btnUnderline" Background="#99A2A4" BorderBrush="#2E383C" Content="U" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,5,0" Height="40" Width="40" Click="btnUnderline_Click"/>
+                <ComboBox x:Name="cmbFontSize" Background="#99A2A4" BorderBrush="#2E383C" IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,5,0" Width="177" Height="40" SelectionChanged="cmbFontSize_SelectionChanged"/>
+                <ComboBox x:Name="cmbFontFamily" Background="#99A2A4" BorderBrush="#2E383C" IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,5,0" Width="177" Height="40" SelectionChanged="cmbFontFamily_SelectionChanged"/>
+                <Grid Margin="5,10,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Height="40" Width="147">
+
+                    <Button x:Name="btnRed" Background="Red" HorizontalAlignment="Left" Margin="4,4,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+                    <Button x:Name="btnOrangeRed" Background="OrangeRed" HorizontalAlignment="Left" Margin="4,21,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnOrange" Background="Orange" HorizontalAlignment="Left" Margin="21,4,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+                    <Button x:Name="btnYellow" Background="Yellow" HorizontalAlignment="Left" Margin="21,21,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnGreen" Background="Green" HorizontalAlignment="Left" Margin="38,4,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+                    <Button x:Name="btnYellowGreen" Background="YellowGreen" HorizontalAlignment="Left" Margin="38,21,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnBlue" Background="Blue" HorizontalAlignment="Left" Margin="55,4,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+                    <Button x:Name="btnCadetBlue" Background="CadetBlue" HorizontalAlignment="Left" Margin="55,21,0,0" VerticalAlignment="Top" Height="15" Width="15" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnDarkBlue" Background="DarkBlue" HorizontalAlignment="Left" Margin="72,4,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+                    <Button x:Name="btnBlueViolet" Background="BlueViolet" HorizontalAlignment="Left" Margin="72,21,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnBrown" Background="Brown" HorizontalAlignment="Left" Margin="90,4,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+                    <Button x:Name="btnViolet" Background="Violet" HorizontalAlignment="Left" Margin="90,21,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnSaddleBrown" Background="SaddleBrown" HorizontalAlignment="Left" Margin="108,4,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+                    <Button x:Name="btnGray" Background="Gray" HorizontalAlignment="Left" Margin="108,21,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+
+                    <Button x:Name="btnBlack" Background="Black" HorizontalAlignment="Left" Margin="126,4,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+                    <Button x:Name="btnWhite" Background="White" HorizontalAlignment="Left" Margin="126,21,0,0" VerticalAlignment="Top" Height="15" Width="16" Click="btnColor_Click"/>
+                </Grid>
+
+
+
+                <ToggleButton Name="btnColorPalette" Content="Color" BorderBrush="#2E383C" IsChecked="True" Margin="5,10,5,0" Height="40" Width="40" HorizontalAlignment="Left"  VerticalAlignment="Top" >
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Background" Value="#2E383C"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="#99A2A4"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+
+            </ToolBar>
+
+            <Grid Name="CollapsedGrid" Margin="232,74,0,0" Height="202" VerticalAlignment="Top" HorizontalAlignment="Left" Width="623">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=btnColorPalette, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+
+                <Border x:Name="PaletteIdicator" Width="auto" Height="auto" BorderBrush="#2E383C"  BorderThickness="2"
+                CornerRadius="0,15,15,15" Margin="515,0,78,27">
+                </Border>
+
+                <Border Width="auto" Height="auto" BorderBrush="#2E383C" Background="#6A7778" BorderThickness="2"
+                CornerRadius="35,0,35,35" Margin="0,0,110,27">
+
+
+                    <StackPanel x:Name="stpnPalette" VerticalAlignment="Center" HorizontalAlignment="Center" Width="492" Height="152">
+                        <DockPanel>
+                            <Label Content="R" Margin="0,5,0,5"  FontSize="16" Foreground="Red" FontFamily="Arial" FontWeight="Bold"/>
+                            <TextBox x:Name="txtRed" Text="{Binding ElementName=sldrRed, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="5"  DockPanel.Dock="Right" TextAlignment="Left" FontSize="16" Width="40" TextChanged="TextBox_TextChanged"   />
+                            <Slider x:Name="sldrRed" Margin="0,5,0,5" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"  />
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Content="G" Margin="0,5,0,5"   FontSize="16" Foreground="Green" FontFamily="Arial" FontWeight="Bold"/>
+                            <TextBox x:Name="txtGreen" Text="{Binding ElementName=sldrGreen, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="5"  DockPanel.Dock="Right" TextAlignment="Left" FontSize="16" Width="40" TextChanged="TextBox_TextChanged" />
+                            <Slider x:Name="sldrGreen" Margin="0,5,0,5" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"  />
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Content="B" Margin="0,5,0,5"   FontSize="16" Foreground="Blue" FontFamily="Arial" FontWeight="Bold"/>
+                            <TextBox x:Name="txtBlue" Text="{Binding ElementName=sldrBlue, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="5"  DockPanel.Dock="Right" TextAlignment="Left" FontSize="16" Width="40" TextChanged="TextBox_TextChanged"  />
+                            <Slider x:Name="sldrBlue" Margin="0,5,0,5" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"  />
+                        </DockPanel>
+
+                        <DockPanel>
+                            <Label Content="A" Margin="0,5,0,5"   FontSize="16" Foreground="Black" FontFamily="Arial" FontWeight="Bold"/>
+                            <TextBox x:Name="txtAlphaChannel"  Text="{Binding ElementName=sldrAlphaChannel, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="5"  DockPanel.Dock="Right" TextAlignment="Left" FontSize="16" Width="40" TextChanged="TextBox_TextChanged"  />
+                            <Slider x:Name="sldrAlphaChannel" Margin="0,5,0,5" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"  />
+                        </DockPanel>
+
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
